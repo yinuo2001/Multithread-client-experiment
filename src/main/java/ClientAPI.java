@@ -30,7 +30,7 @@ import java.util.concurrent.*;
 
 public class ClientAPI {
   private static final int threadGroupSize = 10;
-  private static final int numThreadGroups = 10;
+  private static final int numThreadGroups = 30;
   private static final int delay = 2000;
   private static final String IPAddrTomcat = "http://54.200.14.239:8080/hw4a_war/albums";
   private static final String IPAddrGo = "http://54.200.14.239:8082/IGORTON/AlbumStore/1.0.0/albums";
