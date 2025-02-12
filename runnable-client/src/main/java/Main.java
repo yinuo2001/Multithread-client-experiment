@@ -20,8 +20,8 @@ public class Main {
   private static final int NUMBER_OF_GROUPS = 10;
   private static final int DELAY = 2;
   // IP address of the java servlet server
-  private static final String IPAddr = "54.200.14.239:8080/java_server/Server";
-  private static final String FILE_PATH = "/Users/elise/Desktop/Example.jpg";
+  private static final String IPAddr = "demo-alb-1739993920.us-west-2.elb.amazonaws.com";
+  private static final String FILE_PATH = "/Users/nuanxin/Desktop/Example.jpg";
 
   public static void main(String[] args) {
     PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
@@ -109,6 +109,16 @@ public class Main {
       System.out.println(
           "Throughput: " + ((totalThreads * 2000)) / ((end - start) / 1000) +
               " requests/s");
+
+      int postSuccesses = ClientPost.getSuccessCount();
+      int postFails = ClientPost.getFailCount();
+      int getSuccesses = ClientGet.getSuccessCount();
+      int getFails = ClientGet.getFailCount();
+      System.out.println("Number of successful GET requests: " + getSuccesses);
+      System.out.println("Number of failed GET requests: " + getFails);
+      System.out.println("Number of successful requests: " + postSuccesses);
+      System.out.println("Number of failed requests: " + postFails);
+
     } catch (Exception e) {
       e.printStackTrace();
     }

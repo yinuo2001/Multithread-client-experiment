@@ -49,7 +49,7 @@ Runnable results:
 
 NonRunnable results:
 
-![img_11.png](img_11.png)
+![img_12.png](img_12.png)
 
 ### Performance Analysis
 Based on our experiment, we explored several possible reasons for the performance discrepancy:
