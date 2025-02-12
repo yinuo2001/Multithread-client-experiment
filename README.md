@@ -49,7 +49,7 @@ Runnable results:
 
 NonRunnable results:
 
-![img_6.png](img_6.png)
+![img_11.png](img_11.png)
 
 ### Performance Analysis
 Based on our experiment, we explored several possible reasons for the performance discrepancy:
@@ -62,7 +62,7 @@ However, JConsole monitoring shows:
     - GC frequency is moderate
     - Active server threads are below the configured maxThread
 Moreover, since both methods use the same server, we ruled out server-side bottlenecks as a cause.
-![img_3.png](img_3.png)
+    ![img_6.png](img_6.png)
    
 2. Network Factors:
     - Potential network latency
