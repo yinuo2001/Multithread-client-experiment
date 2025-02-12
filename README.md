@@ -72,35 +72,24 @@ Thus, the network is not a limiting factor.
 ![img_4.png](img_4.png)
    
 3. Client sid Factors:
-   - The Thread Pool size in the nonRunnable method limits the number of threads that can be executed concurrently.
-   We increased the size of the thread pool to 1000 and tested changed the thread pool size as cachedThreadPool, but the
-    performance did not improve.
-
-   - The nonRunnable method makes threads wait in the queue and delay the operation.
-   However, we monitor the queue size and the number of active threads, and the queue size is always 0, and the number
-    of active threads is always less than the thread pool size and the total number of threads is aligned with our 
-   setting.
+   - Thread pool limitations: We increased the thread pool size to 1000 and tested a cachedThreadPool, but performance did not improve.
+   - Queue delays: We monitored queue size and active threads, but the queue size remained 0, and active threads were consistently within limits.
    
    ![img_5.png](img_5.png)
    ![img_10.png](img_10.png)
-   - The overhead of using scheduler in nonRunnable method is expensive.
-   However, we experimented with deleting scheduler in the nonRunnable method, the performance did not improve.
-
+   - Scheduler overhead: Removing the scheduler from the nonRunnable method did not improve performance.
    - The Runnable method is more efficient in terms of memory usage and CPU usage.
     We monitored the CPU usage and memory usage, and the CPU usage is healthy, and the memory usage is healthy as well.
    
    ![img_7.png](img_7.png)
    ![img_8.png](img_8.png)
    
-   - The Runnable method works each Get and Post request asynchronously, while the nonRunnable method works each Get and
-    Post request synchronously.
-      We document the start time and the end time of each threadID doing each get and post request. We found that they worked
-      synchronously, and the thread in Runnable method does not work for the next request while waiting for the response 
-      from the server.
+   - Asynchronous execution advantage: We logged start and end times for each GET and POST request and found no significant differences in request handling—both methods processed requests synchronously.
    
    ![img_9.png](img_9.png)
 
-   - The remaining assumption might be:
-     1. The overhead of creating threads in Runnable method and nonRunnable method is different.
-     2. The overhead of closing threads in Runnable method and nonRunnable method is different.
-     3. Any bugs in code that we did not find.
+   - Remaining Hypotheses:
+     The Runnable method may still have advantages due to:
+     1. Lower thread creation overhead compared to the nonRunnable method.
+     2. More efficient thread closure in the Runnable method.
+     3. Potential unidentified bugs affecting execution efficiency.
